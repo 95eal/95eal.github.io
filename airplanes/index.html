@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airplanes</title>
+<meta name="description" content="Airplanes: hit a plane's head to destroy it. Play alone or online.">
+<style>
+  /* Values copied from the "Calm sky" kit (menus-final/kit/skin-calm.css); --k-sky is the kit's scene colour (layout.css .k-scene). */
+  :root {
+    --k-ink: #1f3a5f;
+    --k-ink-2: #4d6485;
+    --k-primary: #24406c;
+    --k-on-primary: #ffffff;
+    --k-paper: rgba(255, 255, 255, 0.94);
+    --k-white: #ffffff;
+    --k-tint: #eaf3fb;
+    --k-line: rgba(31, 58, 95, 0.16);
+    --k-sky: #8ecbf0;
+    --k-display: 'Fredoka', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --k-ui: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--k-sky); }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--k-sky);
+    color: var(--k-ink);
+    font-family: var(--k-ui);
+    font-size: 16px;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--k-paper);
+    border-radius: 26px;
+    padding: 36px 24px 28px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-family: var(--k-display);
+    font-weight: 600;
+    font-size: 40px;
+    letter-spacing: 0.3px;
+    line-height: 1.1;
+    color: var(--k-ink);
+  }
+  .tagline {
+    margin: 0 0 28px;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--k-ink-2);
+  }
+  .play {
+    display: block;
+    padding: 14px 18px;
+    background: var(--k-primary);
+    color: var(--k-on-primary);
+    border-radius: 26px;
+    font-weight: 900;
+    font-size: 17px;
+    text-decoration: none;
+  }
+  .play:focus-visible, a:focus-visible { outline: 3px solid var(--k-primary); outline-offset: 3px; }
+  .note {
+    margin: 10px 0 0;
+    padding: 6px 14px;
+    display: inline-block;
+    background: var(--k-tint);
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--k-ink-2);
+  }
+  .links {
+    margin: 28px 0 0;
+    padding-top: 18px;
+    border-top: 1.5px solid var(--k-line);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--k-ink-2);
+    overflow-wrap: anywhere;
+  }
+  .links p { margin: 0 0 6px; }
+  .foot { margin: 18px 0 0; font-weight: 700; font-size: 12px; color: var(--k-ink-2); overflow-wrap: anywhere; }
+  .links a { color: var(--k-ink); font-weight: 800; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>Airplanes</h1>
+    <p class="tagline">Hit a plane's head to destroy it. Play alone or online.</p>
+
+    <!-- PLACEHOLDER: Play listing URL -->
+    <a class="play" href="#">Get it on Google Play</a>
+    <p class="note">Not live yet: the Google Play listing is coming soon.</p>
+
+    <div class="links">
+      <p><a href="privacy.html">Privacy policy</a></p>
+      <p>Contact: <a href="mailto:airplanes.multiplayer@gmail.com">airplanes.multiplayer@gmail.com</a></p>
+    </div>
+    <p class="foot">&copy; 2026 <a href="/">95eal games</a></p>
+  </main>
+</body>
+</html>

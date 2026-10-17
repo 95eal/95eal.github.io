@@ -1,0 +1,11 @@
+# app-ads.txt for Airplanes. Published at https://95eal.com/app-ads.txt
+# Google AdMob (also bids through LevelPlay's Google Bidding)
+google.com, pub-9331161101244576, DIRECT, f08c47fec0942fa0
+
+# ironSource (LevelPlay): add "ironsrc.com, <ironSource publisher ID>, DIRECT" and ironSource's reseller list.
+# The publisher ID is in the ironSource platform under Account > API > Publisher ID; it is not known yet.
+# Source: https://docs.unity.com/en-us/grow/programmatic/ironsource-exchange/app-ads-txt
+
+# Unity Ads: copy the seller list the Monetization dashboard shows under App-ads.txt ("Show full list").
+# The current documentation prints no fixed line; the list is account-specific.
+# Source: https://docs.unity.com/grow/en-us/ads/optimization/app-ads-txt
