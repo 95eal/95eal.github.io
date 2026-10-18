@@ -1,4 +1,4 @@
-# app-ads.txt for 95eal games (Airplanes Multiplayer, com.bsgames.airplanes).
+# app-ads.txt for 95eal studio (Airplanes Multiplayer, com.bsgames.airplanes).
 # Published at https://95eal.com/app-ads.txt. Updated 2026-10-17.
 OWNERDOMAIN=95eal.com
 
