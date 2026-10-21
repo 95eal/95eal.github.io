@@ -58,7 +58,7 @@
 <main>
 
 <h1>Airplanes Multiplayer: privacy policy</h1>
-<p class="meta"><strong>Effective date:</strong> 18 October 2026</p>
+<p class="meta"><strong>Effective date:</strong> 21 October 2026</p>
 <p class="meta">This policy is published at https://95eal.com/airplanes/privacy.html</p>
 
 <h2 id="who">Who we are</h2>
@@ -72,7 +72,7 @@
   <li>The game shows ads (through Unity LevelPlay, with Google AdMob and Unity Ads) and sells optional items through Google Play. Ads use your phone's advertising ID.</li>
   <li>Where the law requires it (the European Economic Area, the United Kingdom and Switzerland) you are asked for your choices first, by Google's consent message for ads and by the game's own question for analytics.</li>
   <li>The game never sees your payment card or other payment details. Google handles payment.</li>
-  <li><strong>Settings &gt; Delete my data</strong> deletes your anonymous Unity account, asks Unity to delete your analytics data and wipes your game profile from your phone. Leaderboard entries are removed on request.</li>
+  <li><strong>Settings &gt; Delete my data</strong> removes your entries from the live leaderboards, deletes your anonymous Unity account, asks Unity to delete your analytics data and wipes your game profile from your phone.</li>
 </ul>
 
 <h2 id="device">What the game keeps on your phone</h2>
@@ -208,20 +208,22 @@
   <li>on the win-streak leaderboards: your streak, league, division and the date of your best.</li>
 </ul>
 <p>You appear on your <strong>country's leaderboard</strong> only while <em>Show my flag</em> is on. Your country is never stored as a field of the entry; being on a country's board is how it shows. Your hidden confidence value is never sent.</p>
+<p>When you open the <em>My country</em> tab with your flag off, the game reads the leaderboard of the country you chose, so Unity receives that country's code as the name of the board to read. Nothing is written and you are not added to it. If you have not chosen a country, nothing is read.</p>
 <p>The live leaderboards keep your latest score until your next ranked match replaces it. <strong>Each month's leaderboard is archived when the month ends, and the archives keep every entry.</strong> If you switch your flag off, new entries stop going to your country's leaderboard, but the entry already there stays until it is removed.</p>
 
 <h2 id="delete">Deleting your data</h2>
 <h3>Settings &gt; Delete my data</h3>
 <p>From the main menu, open Settings and press <strong>Delete my data</strong> (it is not offered during a match). The game asks you to confirm; the question says it deletes your Unity account, the analytics already sent and everything the game keeps on the device: your rating, achievements, name and settings. It cannot be undone. It does the following, in this order:</p>
 <ol>
+  <li>removes your entries from the <strong>live leaderboards</strong>, through a Unity Cloud Code function that deletes only the caller's own entries;</li>
   <li>deletes your anonymous <strong>Unity Authentication account</strong> (signing in first if it has to, unless you never had one);</li>
   <li>switches analytics off and asks <strong>Unity Analytics to delete</strong> the data sent from your device;</li>
   <li>wipes your <strong>profile on the phone</strong> (rating, achievements, name, settings and the other items listed under <a href="#device">What the game keeps on your phone</a>) and records your analytics choice as unanswered, so you may be asked again.</li>
 </ol>
-<p>It is all or nothing: if the account cannot be reached, nothing is deleted, you are told, and you can try again. Afterwards the game starts as it did the first time, with a new drawn name and a new anonymous account.</p>
+<p>It is all or nothing: if the leaderboards or the account cannot be reached, nothing is deleted, you are told, and you can try again. Afterwards the game starts as it did the first time, with a new drawn name and a new anonymous account.</p>
 <p>What it does not do:</p>
 <ul>
-  <li><strong>Leaderboard entries</strong> already written are not removed by it. Write to <strong><a href="mailto:airplanes.multiplayer@gmail.com">airplanes.multiplayer@gmail.com</a></strong> with your name as the game showed it and we will delete your entries from the live leaderboards. An archived month can be removed only as a whole, so an entry in a past month's archive may stay.</li>
+  <li><strong>Archived months</strong> of the leaderboards keep their entries, because an archived month can be removed only as a whole. Write to <strong><a href="mailto:airplanes.multiplayer@gmail.com">airplanes.multiplayer@gmail.com</a></strong> with your name as the game showed it and we will tell you what can be removed. If you used Delete my data on a version older than 17 October 2026, your live entries may still be there; write to us and we will delete them.</li>
   <li>The installation id that Unity's software keeps on the phone is not part of the account and is not erased by it.</li>
   <li>Your <strong>purchases</strong> are Google's records and stay with Google Play; the game reads them again at the next start. Your <strong>ad-consent choices</strong> are stored by Google's component on your phone and ads data held by ad networks is theirs; use <em>Privacy settings</em> and your phone's advertising-ID settings, and the providers' policies, for those.</li>
   <li>If you reinstall before Android's next backup, the system's backup can restore the deleted profile; the game then signs in as a new player.</li>
@@ -270,7 +272,7 @@
 <ul>
   <li><strong>On your phone:</strong> until you delete it with <em>Delete my data</em> or uninstall the game.</li>
   <li><strong>Your Unity account:</strong> until you delete it with <em>Delete my data</em>.</li>
-  <li><strong>Live leaderboard entries:</strong> your latest score, until your next ranked match replaces it or we remove it on your request.</li>
+  <li><strong>Live leaderboard entries:</strong> your latest score, until your next ranked match replaces it, you use Delete my data, or we remove it on your request.</li>
   <li><strong>Leaderboard monthly archives:</strong> kept indefinitely; an archived month can be removed only as a whole.</li>
   <li><strong>Feedback emails:</strong> until they are no longer needed to answer you or fix the problem you reported.</li>
   <li><strong>Analytics, diagnostics, ads and purchase data held by Unity, Google and the ad networks:</strong> kept for the periods set by their own policies, which we have not stated here. Analytics data is deleted on request as described above.</li>
@@ -281,7 +283,7 @@
 
 <h2 id="links">Provider policies</h2>
 <ul>
-  <li>Unity (Authentication, Analytics, Remote Config, Leaderboards, online play, Diagnostics, LevelPlay, Unity Ads and In-App Purchasing): <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Game Player and App User Privacy Policy</a>; Unity's <a href="https://unity.com/legal/privacy-policy">Privacy Policy hub</a></li>
+  <li>Unity (Authentication, Analytics, Remote Config, Leaderboards, Cloud Code, online play, Diagnostics, LevelPlay, Unity Ads and In-App Purchasing): <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Game Player and App User Privacy Policy</a>; Unity's <a href="https://unity.com/legal/privacy-policy">Privacy Policy hub</a></li>
   <li>ironSource / Unity LevelPlay: <a href="https://unity.com/legal/privacy-policy">Unity privacy policy</a> (ironSource is part of Unity)</li>
   <li>Google AdMob, Google's User Messaging Platform and Google Play (including Play Billing, in-app updates and Android vitals): <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a></li>
 </ul>
