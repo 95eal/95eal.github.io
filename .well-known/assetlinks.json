@@ -1,0 +1,23 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bsgames.airplanes",
+      "sha256_cert_fingerprints": [
+        "77:6F:DA:40:68:73:50:5B:BD:8E:2F:C2:48:F3:FA:23:53:40:C9:00:A3:78:38:C3:E4:60:09:BC:3F:01:96:C5",
+        "EF:21:67:C4:75:10:96:01:1B:6C:A2:E2:11:B0:21:0D:B7:8B:0A:4A:F3:77:D7:6B:9F:82:64:3A:6A:03:2E:1A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bsgames.airplanes.dev",
+      "sha256_cert_fingerprints": [
+        "2D:91:2B:22:35:77:45:EF:5E:D0:6F:57:5D:DA:94:EA:52:41:96:47:A4:84:46:56:EF:7B:CC:C2:62:3B:26:AF"
+      ]
+    }
+  }
+]

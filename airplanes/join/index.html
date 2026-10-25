@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join me in Airplanes</title>
+<meta name="description" content="A friend invited you to a game of Airplanes: hit a plane's head to destroy it.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Airplanes">
+<meta property="og:title" content="Join me in Airplanes">
+<meta property="og:description" content="Tap to join my game. Hit a plane's head to destroy it.">
+<meta property="og:image" content="https://95eal.com/airplanes/og.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:url" content="https://95eal.com/airplanes/join/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  /* Values copied from the "Calm sky" kit, as on /airplanes/. */
+  :root {
+    --k-ink: #1f3a5f;
+    --k-ink-2: #4d6485;
+    --k-primary: #24406c;
+    --k-on-primary: #ffffff;
+    --k-paper: rgba(255, 255, 255, 0.94);
+    --k-tint: #eaf3fb;
+    --k-line: rgba(31, 58, 95, 0.16);
+    --k-sky: #8ecbf0;
+    --k-display: 'Fredoka', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --k-ui: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--k-sky); }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100dvh;
+    background: var(--k-sky); color: var(--k-ink);
+    font-family: var(--k-ui); font-size: 16px; line-height: 1.4;
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+  }
+  .card { width: 100%; max-width: 420px; background: var(--k-paper); border-radius: 26px; padding: 32px 24px 26px; text-align: center; }
+  h1 { margin: 0 0 6px; font-family: var(--k-display); font-weight: 600; font-size: 34px; line-height: 1.1; }
+  .tagline { margin: 0 0 20px; font-weight: 700; font-size: 16px; color: var(--k-ink-2); }
+  .code { margin: 0 0 22px; padding: 12px; background: var(--k-tint); border-radius: 18px; }
+  .code small { display: block; font-weight: 700; font-size: 13px; color: var(--k-ink-2); }
+  .code strong { display: block; font-family: var(--k-display); font-size: 34px; letter-spacing: 4px; }
+  .btn { display: block; padding: 14px 18px; border-radius: 26px; font-weight: 900; font-size: 17px; text-decoration: none; margin: 0 0 10px; }
+  .primary { background: var(--k-primary); color: var(--k-on-primary); }
+  .secondary { background: transparent; color: var(--k-primary); border: 2px solid var(--k-primary); }
+  .btn:focus-visible { outline: 3px solid var(--k-primary); outline-offset: 3px; }
+  .help { margin: 14px 0 0; font-weight: 700; font-size: 13px; color: var(--k-ink-2); }
+  .foot { margin: 20px 0 0; padding-top: 14px; border-top: 1.5px solid var(--k-line); font-weight: 700; font-size: 12px; color: var(--k-ink-2); }
+  .foot a { color: var(--k-ink); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>Join me in Airplanes</h1>
+    <p class="tagline">A friend invited you to a game.</p>
+
+    <div class="code" id="code-box" hidden>
+      <small>Game code</small>
+      <strong id="code"></strong>
+    </div>
+
+    <a class="btn primary" id="open" href="#" hidden>Open in the game</a>
+    <a class="btn secondary" id="play" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes">Get it on Google Play</a>
+
+    <p class="help" id="help">If the game doesn't open, install it, then come back and tap "Open in the game", or enter the code under Play a friend › Join a game.</p>
+    <p class="help" id="nocode" hidden>This link has no game code. Ask your friend to send the invite again.</p>
+
+    <p class="foot"><a href="/airplanes/">Airplanes</a> · <a href="/airplanes/privacy.html">Privacy</a> · &copy; 2026 95eal studio</p>
+  </main>
+<script>
+  (function () {
+    var pkg = 'com.bsgames.airplanes';
+    var raw = new URLSearchParams(window.location.search).get('c') || '';
+    var code = raw.trim().toUpperCase();
+    var play = document.getElementById('play');
+    var base = 'https://play.google.com/store/apps/details?id=' + pkg;
+
+    if (!/^[A-Z0-9]{4,12}$/.test(code)) {
+      document.getElementById('nocode').hidden = !raw;
+      document.getElementById('help').hidden = true;
+      return;
+    }
+
+    document.getElementById('code').textContent = code;
+    document.getElementById('code-box').hidden = false;
+
+    // The Play link carries the code through the install (Play Install Referrer), so a fresh install can join it.
+    var playUrl = base + '&referrer=' + encodeURIComponent('c=' + code);
+    play.href = playUrl;
+
+    // In-app browsers (Instagram, Messenger) don't hand App Links to the game; an intent link does, on Android.
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    var open = document.getElementById('open');
+    var link = 'https://95eal.com/airplanes/join/?c=' + encodeURIComponent(code);
+    open.href = isAndroid
+      ? 'intent://95eal.com/airplanes/join/?c=' + encodeURIComponent(code)
+        + '#Intent;scheme=https;package=' + pkg + ';S.browser_fallback_url=' + encodeURIComponent(playUrl) + ';end'
+      : link;
+    open.hidden = false;
+  })();
+</script>
+</body>
+</html>
