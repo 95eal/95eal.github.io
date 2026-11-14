@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avioanele</title>
+<meta name="description" content="Ascunde-ți avioanele și vânează-le pe ale lor. Joacă solo, în rețeaua locală sau online.">
+<meta name="theme-color" content="#bfdef5">
+<link rel="icon" href="img/icon.webp">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="ro" href="ro.html">
+<style>
+:root{--ink:#1f3a5f;--ink2:#41587a;--primary:#24406c;--tint:#eaf3fb;--line:rgba(31,58,95,.16);--sky:#8ecbf0}
+*{box-sizing:border-box}
+html{background:var(--sky)}
+body{margin:0;color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ background:
+ radial-gradient(70px 28px at 88% 150px,rgba(255,255,255,.7),transparent 70%),
+ radial-gradient(110px 38px at 6% 420px,rgba(255,255,255,.6),transparent 70%),
+ radial-gradient(90px 32px at 94% 640px,rgba(255,255,255,.55),transparent 70%),
+ linear-gradient(#c6e2f6,#8ecbf0 700px) no-repeat,var(--sky)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--ink)}
+a:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header{display:flex;align-items:center;gap:10px;padding:12px 0}
+header img{width:40px;height:40px;border-radius:22%}
+.name{font-weight:800;font-size:17px;margin-right:auto}
+.lang{font-size:14px;font-weight:700;color:var(--ink2)}
+.lang a,.lang b{display:inline-block;padding:8px 6px}
+.hero{text-align:center}
+h1 span{white-space:nowrap}
+h1{margin:6px 0 8px;font-size:29px;line-height:1.1;font-weight:800;letter-spacing:-.3px}
+.tag{margin:0 auto;max-width:30em;font-size:17px;font-weight:600;color:var(--ink2)}
+.badge{display:inline-block;line-height:0;border-radius:12px;margin:6px 0}
+.badge img{height:96px;width:auto}
+.phone{width:230px;margin:2px auto 0;border:8px solid var(--ink);border-radius:32px;background:var(--ink);overflow:hidden}
+.phone img{border-radius:24px;width:100%}
+h2{margin:36px 0 14px;font-size:24px;line-height:1.2;font-weight:800;text-align:center}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.steps li,.panel{background:rgba(255,255,255,.94);border-radius:22px;padding:16px}
+.steps li{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:center}
+.steps img{border-radius:12px;border:1.5px solid var(--line);width:100%}
+.steps .wide{grid-template-columns:1fr}
+.n{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;font-size:15px;text-align:center;line-height:28px;margin-bottom:6px}
+h3{margin:0 0 4px;font-size:18px;line-height:1.25;font-weight:800}
+p{margin:0}
+.steps p,.panel p{color:var(--ink2)}
+.two{display:grid;gap:12px}
+.panel img{border-radius:14px;border:1.5px solid var(--line);margin-top:14px}
+.panel dl{margin:0}
+.panel dt{font-weight:800;margin-top:10px}
+.panel dt:first-child{margin-top:0}
+.panel dd{margin:0;color:var(--ink2)}
+.cust{display:grid;grid-template-columns:1fr 104px;gap:14px;align-items:center}
+.cust img{margin:0}
+.cta{text-align:center;margin:28px 0 0}
+footer{margin-top:22px;padding:18px 0 28px;border-top:1.5px solid var(--line);text-align:center;font-size:14px;color:var(--ink);overflow-wrap:anywhere}
+footer p{margin:0 0 6px}
+footer a{font-weight:700}
+.small{font-size:12px}
+@media(min-width:860px){
+ .hero{display:grid;grid-template-columns:1fr 280px;column-gap:56px;align-items:center;text-align:left;padding:24px 40px 0}
+ h1{font-size:54px}
+ .tag{font-size:20px;margin:0}
+ .badge{margin-left:0}
+ .phone{width:270px;grid-column:2;grid-row:1}
+ .steps{grid-template-columns:repeat(3,1fr)}
+ .steps li,.steps .wide{grid-template-columns:1fr;align-content:start;text-align:center}
+ .steps img{max-width:190px;margin:0 auto}
+ .steps .wide img{max-width:100%;order:-1}
+ .two{grid-template-columns:3fr 2fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <img src="img/icon.webp" width="144" height="144" alt="">
+ <span class="name">Avioanele</span>
+ <nav class="lang" aria-label="Limba"><a href="index.html" lang="en" hreflang="en" onclick="try{localStorage.setItem(&#39;lang&#39;,&#39;en&#39;)}catch(e){}">EN</a> · <b aria-current="page">RO</b></nav>
+</header>
+<main>
+ <section class="hero">
+  <div>
+   <h1><span>Ascunde-ți</span> avioanele. <span>Vânează-le</span> pe ale lor.</h1>
+   <p class="tag">Orice avion cade dintr-o singură lovitură: una în cap. Joacă solo, în rețeaua locală sau online.</p>
+   <a class="badge" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/ro_badge_web_generic.png" width="646" height="250" alt="Descarcă de pe Google Play"></a>
+  </div>
+  <div class="phone"><img src="img/headshot.webp" width="600" height="1017" alt="Un BOOM de benzi desenate pe tabla adversarului: o lovitură în cap doboară un avion"></div>
+ </section>
+
+ <h2>Cum se joacă</h2>
+ <ol class="steps">
+  <li><img src="img/place.webp" width="320" height="543" loading="lazy" alt="Trei avioane așezate pe tabla jucătorului înainte de meci">
+   <div><span class="n">1</span><h3>Ascunde trei avioane</h3><p>Așază-le pe grila ta înainte de meci.</p></div></li>
+  <li class="wide"><div><span class="n">2</span><h3>O lovitură îți arată unde se află</h3><p>Mutările alternează. Doar o lovitură în cap doboară avionul, așa că citește tabla și strânge cercul.</p></div>
+   <img src="img/hit.webp" width="640" height="301" loading="lazy" alt="Cele două table alăturate: o lovitură roșie pe tabla adversarului și următoarea țintă lângă ea"></li>
+  <li><img src="img/last.webp" width="320" height="543" loading="lazy" alt="BOOM-ul ultimei lovituri în cap, cu flota adversarului dezvăluită">
+   <div><span class="n">3</span><h3>Trei lovituri în cap câștigă meciul</h3><p>Primul care doboară toate avioanele inamice câștigă.</p></div></li>
+ </ol>
+
+ <h2>Joacă cum vrei</h2>
+ <div class="two">
+  <div class="panel">
+   <dl>
+    <dt>Single player</dt><dd>Împotriva calculatorului.</dd>
+    <dt>Play on your local network</dt><dd>Provoacă pe cineva din rețeaua ta locală.</dd>
+    <dt>Play online</dt><dd>Meciuri clasate sau cu un prieten, cu ligi și clasamente.</dd>
+   </dl>
+   <img src="img/modes.webp" width="640" height="301" loading="lazy" alt="Meniul principal: single player, play on this network, play online">
+  </div>
+  <div class="panel cust">
+   <div><h3>Fă-l al tău</h3><p>Alege-ți avionul, culorile și finisajul. Joacă și deblochezi mai mult.</p></div>
+   <img src="img/customise.webp" width="320" height="543" loading="lazy" alt="Customise: alegerea culorilor avionului">
+  </div>
+ </div>
+
+ <p class="cta"><a class="badge" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/ro_badge_web_generic.png" width="646" height="250" loading="lazy" alt="Descarcă de pe Google Play"></a></p>
+</main>
+<footer>
+ <p><a href="https://95eal.com/airplanes/privacy.html">Politica de confidențialitate</a></p>
+ <p>Contact: <a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></p>
+ <p class="small">Google Play și sigla Google Play sunt mărci comerciale ale Google LLC.</p>
+ <p class="small">&copy; 2026 <a href="https://95eal.com/">95eal studio</a></p>
+</footer>
+</div>
+</body>
+</html>

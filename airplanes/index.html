@@ -3,109 +3,128 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Airplanes</title>
-<meta name="description" content="Airplanes: hit a plane's head to destroy it. Play alone or online.">
+<title>Airplanes Multiplayer</title>
+<meta name="description" content="Hide your planes, hunt theirs. One headshot brings a plane down. Solo, local network, online.">
+<meta name="theme-color" content="#bfdef5">
+<link rel="icon" href="img/icon.webp">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="ro" href="ro.html">
+<script>try{var c=null;try{c=localStorage.getItem('lang')}catch(e){}var l=(navigator.languages&&navigator.languages[0])||navigator.language||'';if(c==='ro'||(!c&&/^ro\b/i.test(l)))location.replace('ro.html')}catch(e){}</script>
 <style>
-  /* Values copied from the "Calm sky" kit (menus-final/kit/skin-calm.css); --k-sky is the kit's scene colour (layout.css .k-scene). */
-  :root {
-    --k-ink: #1f3a5f;
-    --k-ink-2: #4d6485;
-    --k-primary: #24406c;
-    --k-on-primary: #ffffff;
-    --k-paper: rgba(255, 255, 255, 0.94);
-    --k-white: #ffffff;
-    --k-tint: #eaf3fb;
-    --k-line: rgba(31, 58, 95, 0.16);
-    --k-sky: #8ecbf0;
-    --k-display: 'Fredoka', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    --k-ui: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { background: var(--k-sky); }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-    background: var(--k-sky);
-    color: var(--k-ink);
-    font-family: var(--k-ui);
-    font-size: 16px;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-  .card {
-    width: 100%;
-    max-width: 420px;
-    background: var(--k-paper);
-    border-radius: 26px;
-    padding: 36px 24px 28px;
-    text-align: center;
-  }
-  h1 {
-    margin: 0 0 8px;
-    font-family: var(--k-display);
-    font-weight: 600;
-    font-size: 40px;
-    letter-spacing: 0.3px;
-    line-height: 1.1;
-    color: var(--k-ink);
-  }
-  .tagline {
-    margin: 0 0 28px;
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--k-ink-2);
-  }
-  .play {
-    display: block;
-    padding: 14px 18px;
-    background: var(--k-primary);
-    color: var(--k-on-primary);
-    border-radius: 26px;
-    font-weight: 900;
-    font-size: 17px;
-    text-decoration: none;
-  }
-  .play:focus-visible, a:focus-visible { outline: 3px solid var(--k-primary); outline-offset: 3px; }
-  .note {
-    margin: 10px 0 0;
-    padding: 6px 14px;
-    display: inline-block;
-    background: var(--k-tint);
-    border-radius: 16px;
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--k-ink-2);
-  }
-  .links {
-    margin: 28px 0 0;
-    padding-top: 18px;
-    border-top: 1.5px solid var(--k-line);
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--k-ink-2);
-    overflow-wrap: anywhere;
-  }
-  .links p { margin: 0 0 6px; }
-  .foot { margin: 18px 0 0; font-weight: 700; font-size: 12px; color: var(--k-ink-2); overflow-wrap: anywhere; }
-  .links a { color: var(--k-ink); font-weight: 800; }
+:root{--ink:#1f3a5f;--ink2:#41587a;--primary:#24406c;--tint:#eaf3fb;--line:rgba(31,58,95,.16);--sky:#8ecbf0}
+*{box-sizing:border-box}
+html{background:var(--sky)}
+body{margin:0;color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ background:
+ radial-gradient(70px 28px at 88% 150px,rgba(255,255,255,.7),transparent 70%),
+ radial-gradient(110px 38px at 6% 420px,rgba(255,255,255,.6),transparent 70%),
+ radial-gradient(90px 32px at 94% 640px,rgba(255,255,255,.55),transparent 70%),
+ linear-gradient(#c6e2f6,#8ecbf0 700px) no-repeat,var(--sky)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--ink)}
+a:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header{display:flex;align-items:center;gap:10px;padding:12px 0}
+header img{width:40px;height:40px;border-radius:22%}
+.name{font-weight:800;font-size:17px;margin-right:auto}
+.lang{font-size:14px;font-weight:700;color:var(--ink2)}
+.lang a,.lang b{display:inline-block;padding:8px 6px}
+.hero{text-align:center}
+h1 span{white-space:nowrap}
+h1{margin:6px 0 8px;font-size:34px;line-height:1.1;font-weight:800;letter-spacing:-.3px}
+.tag{margin:0 auto;max-width:30em;font-size:17px;font-weight:600;color:var(--ink2)}
+.badge{display:inline-block;line-height:0;border-radius:12px;margin:6px 0}
+.badge img{height:96px;width:auto}
+.phone{width:230px;margin:2px auto 0;border:8px solid var(--ink);border-radius:32px;background:var(--ink);overflow:hidden}
+.phone img{border-radius:24px;width:100%}
+h2{margin:36px 0 14px;font-size:24px;line-height:1.2;font-weight:800;text-align:center}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.steps li,.panel{background:rgba(255,255,255,.94);border-radius:22px;padding:16px}
+.steps li{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:center}
+.steps img{border-radius:12px;border:1.5px solid var(--line);width:100%}
+.steps .wide{grid-template-columns:1fr}
+.n{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;font-size:15px;text-align:center;line-height:28px;margin-bottom:6px}
+h3{margin:0 0 4px;font-size:18px;line-height:1.25;font-weight:800}
+p{margin:0}
+.steps p,.panel p{color:var(--ink2)}
+.two{display:grid;gap:12px}
+.panel img{border-radius:14px;border:1.5px solid var(--line);margin-top:14px}
+.panel dl{margin:0}
+.panel dt{font-weight:800;margin-top:10px}
+.panel dt:first-child{margin-top:0}
+.panel dd{margin:0;color:var(--ink2)}
+.cust{display:grid;grid-template-columns:1fr 104px;gap:14px;align-items:center}
+.cust img{margin:0}
+.cta{text-align:center;margin:28px 0 0}
+footer{margin-top:22px;padding:18px 0 28px;border-top:1.5px solid var(--line);text-align:center;font-size:14px;color:var(--ink);overflow-wrap:anywhere}
+footer p{margin:0 0 6px}
+footer a{font-weight:700}
+.small{font-size:12px}
+@media(min-width:860px){
+ .hero{display:grid;grid-template-columns:1fr 280px;column-gap:56px;align-items:center;text-align:left;padding:24px 40px 0}
+ h1{font-size:54px}
+ .tag{font-size:20px;margin:0}
+ .badge{margin-left:-15px}
+ .phone{width:270px;grid-column:2;grid-row:1}
+ .steps{grid-template-columns:repeat(3,1fr)}
+ .steps li,.steps .wide{grid-template-columns:1fr;align-content:start;text-align:center}
+ .steps img{max-width:190px;margin:0 auto}
+ .steps .wide img{max-width:100%;order:-1}
+ .two{grid-template-columns:3fr 2fr}
+}
 </style>
 </head>
 <body>
-  <main class="card">
-    <h1>Airplanes</h1>
-    <p class="tagline">Hit a plane's head to destroy it. Play alone or online.</p>
+<div class="wrap">
+<header>
+ <img src="img/icon.webp" width="144" height="144" alt="">
+ <span class="name">Airplanes Multiplayer</span>
+ <nav class="lang" aria-label="Language"><b aria-current="page">EN</b> · <a href="ro.html" lang="ro" hreflang="ro" onclick="try{localStorage.setItem(&#39;lang&#39;,&#39;ro&#39;)}catch(e){}">RO</a></nav>
+</header>
+<main>
+ <section class="hero">
+  <div>
+   <h1>Hide your planes. Hunt theirs.</h1>
+   <p class="tag">One headshot brings a plane down. Play solo, on your local network or online.</p>
+   <a class="badge" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="646" height="250" alt="Get it on Google Play"></a>
+  </div>
+  <div class="phone"><img src="img/headshot.webp" width="600" height="1017" alt="A comic BOOM on the opponent's board as a headshot brings a plane down"></div>
+ </section>
 
-    <a class="play" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes">Get it on Google Play</a>
+ <h2>How it plays</h2>
+ <ol class="steps">
+  <li><img src="img/place.webp" width="320" height="543" loading="lazy" alt="Three planes placed on the player's board before the match">
+   <div><span class="n">1</span><h3>Hide your three planes</h3><p>Place them on your grid before the match.</p></div></li>
+  <li class="wide"><div><span class="n">2</span><h3>A hit shows you where it is</h3><p>Turns alternate. Only a headshot brings a plane down, so read the board and close in.</p></div>
+   <img src="img/hit.webp" width="640" height="301" loading="lazy" alt="Both boards side by side: a red hit on the opponent's board and the next tile aimed beside it"></li>
+  <li><img src="img/last.webp" width="320" height="543" loading="lazy" alt="The last headshot's BOOM, with the opponent's fleet revealed">
+   <div><span class="n">3</span><h3>Three headshots win the match</h3><p>The first to bring down every enemy plane wins.</p></div></li>
+ </ol>
 
-    <div class="links">
-      <p><a href="privacy.html">Privacy policy</a></p>
-      <p>Contact: <a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></p>
-    </div>
-    <p class="foot">&copy; 2026 <a href="/">95eal studio</a></p>
-  </main>
+ <h2>Play your way</h2>
+ <div class="two">
+  <div class="panel">
+   <dl>
+    <dt>Single player</dt><dd>Against the computer.</dd>
+    <dt>Play on your local network</dt><dd>Challenge someone on your local network.</dd>
+    <dt>Play online</dt><dd>Ranked matches or a game with a friend, with leagues and leaderboards.</dd>
+   </dl>
+   <img src="img/modes.webp" width="640" height="301" loading="lazy" alt="The main menu: single player, play on this network, play online">
+  </div>
+  <div class="panel cust">
+   <div><h3>Make it yours</h3><p>Choose your plane, its colours and finish. Play to unlock more.</p></div>
+   <img src="img/customise.webp" width="320" height="543" loading="lazy" alt="Customise, choosing the plane's colours">
+  </div>
+ </div>
+
+ <p class="cta"><a class="badge" href="https://play.google.com/store/apps/details?id=com.bsgames.airplanes"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="646" height="250" loading="lazy" alt="Get it on Google Play"></a></p>
+</main>
+<footer>
+ <p><a href="https://95eal.com/airplanes/privacy.html">Privacy policy</a></p>
+ <p>Contact: <a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></p>
+ <p class="small">Google Play and the Google Play logo are trademarks of Google LLC.</p>
+ <p class="small">&copy; 2026 <a href="https://95eal.com/">95eal studio</a></p>
+</footer>
+</div>
 </body>
 </html>
