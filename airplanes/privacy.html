@@ -67,16 +67,16 @@
 
 <h2 id="short">The short version</h2>
 <ul>
-  <li>There is no sign-up and you type nothing about yourself. The game signs you in anonymously. Your name in the game is drawn for you from fixed lists. You cannot type a name.</li>
+  <li>There is no sign-up and you type nothing about yourself. The game signs you in to Unity anonymously. On Android, if Google Play Games has signed you in, the game links your Play Games profile to that account and saves your progress to Unity Cloud Save (see <a href="#playgames">Google Play Games and cloud save</a>). Your name in the game is drawn for you from fixed lists. You cannot type a name.</li>
   <li>Your country flag and your platform are shown to other players only if you switch them on in Settings. Both start off.</li>
   <li>The game shows ads (through Unity LevelPlay, with Google AdMob and Unity Ads) and sells optional items through Google Play. Ads use your phone's advertising ID.</li>
   <li>Where the law requires it (the European Economic Area, the United Kingdom and Switzerland) you are asked for your choices first. On Android, one message from Google asks for both your ad choices and your analytics choice; on Windows, the game asks its own analytics question.</li>
   <li>The game never sees your payment card or other payment details. Google handles payment.</li>
-  <li><strong>Settings &gt; Delete my data</strong> removes your entries from the live leaderboards, deletes your anonymous Unity account, asks Unity to delete your analytics data and wipes your game profile from your phone. Where Google's consent form applies (the EEA, the UK and Switzerland), it then opens it again so you choose afresh.</li>
+  <li><strong>Settings &gt; Delete my data</strong> removes your entries from the live leaderboards, deletes your progress saved with Google Play Games, deletes your Unity account, asks Unity to delete your analytics data and wipes your game profile from your phone. Where Google's consent form applies (the EEA, the UK and Switzerland), it then opens it again so you choose afresh.</li>
 </ul>
 
 <h2 id="device">What the game keeps on your phone</h2>
-<p>The game keeps one local file, your <strong>profile</strong> (<code>profile.json</code> in the game's own storage area on the phone), and a backup copy of it if the file is ever found damaged. It holds:</p>
+<p>The game keeps three files in its own storage area on the phone. The main one is your <strong>profile</strong> (<code>profile.json</code>), with a backup copy of it if the file is ever found damaged. It holds:</p>
 <ul>
   <li>your drawn name (stored as two numbers that pick words from the game's lists), and the country you chose, if you chose one;</li>
   <li>whether <em>Show my flag</em> and <em>Show my platform</em> are on (both off until you switch them on);</li>
@@ -86,21 +86,29 @@
   <li>your analytics choice: whether it is on, and whether you have answered the question;</li>
   <li>the ids of the items you have bought, copied from Google Play so the game works offline (for example, <code>airplanes.remove_ads</code>), and how many rewarded ads you have watched toward each item;</li>
   <li>an ad-timing clock: how long the game has been in the foreground, when the last ad was shown on that clock, and how many ads you have watched in total;</li>
-  <li>your daily streak, the items you have seen marked as new, and your bonus experience points.</li>
+  <li>your daily streak, the items you have seen marked as new, and your bonus experience points;</li>
+  <li>Google Play Games saving: whether this phone saves your progress, whether the automatic save is turned off, whether you have answered the offer to save, and, while it saves, your Play Games player id, which the game uses only to check that Play Games is still signed in to the same player and sends nowhere (Android's own backup holds it with the rest of the profile).</li>
 </ul>
-<p>The profile holds no free text, no device model or name, and no player id. It is not encrypted and can be edited by someone with access to the phone's files, so your rating is a local display value.</p>
-<p>The Unity services below and Google's consent component also keep small items of their own on the phone, such as your anonymous sign-in session, the last settings the game fetched, and your ad-consent choices.</p>
-<p>Uninstalling the game removes what it keeps on the phone. On Android, the system's backup feature (on by default, and not something the game controls) can restore the profile together with the anonymous sign-in if you reinstall, so that your profile and your anonymous player come back as a pair.</p>
+<p>The profile holds no free text, no device model or name, and no Unity player id; the one id it can hold is the Play Games player id above. It is not encrypted and can be edited by someone with access to the phone's files, so your rating is a local display value.</p>
+<p>Beside the profile are two small files:</p>
+<ul>
+  <li><code>resume.json</code>, only while a friend match (<em>Play with a friend</em>) is on: the match's session and match ids, your seat and the host's, your opponent's drawn name (as two numbers), the time of your last contact with your opponent and how long the match waits for a player to come back, so that the game can take you back to the match if Android closes it. It is deleted when the match ends, and expires by itself soon after.</li>
+  <li><code>device.json</code>: what belongs to the phone rather than to you: the graphics level, whether you or the game chose it, and how many times the game has measured the phone; and two flags, that the automatic save to Google Play Games is off on this phone and, on Android, that Google's privacy form is owed after Delete my data. It names no device.</li>
+</ul>
+<p>Neither of the two is included in Android's backup.</p>
+<p>The Unity services below and Google's consent component also keep small items of their own on the phone, such as your sign-in session, the last settings the game fetched, and your ad-consent choices.</p>
+<p>Uninstalling the game removes what it keeps on the phone. On Android, the system's backup feature (on by default, and not something the game controls) can restore the profile together with the sign-in if you reinstall, so that your profile and your player come back as a pair.</p>
 
 <h2 id="sent">What the game sends, and to whom</h2>
 <h3>To other players</h3>
 <ul>
-  <li><strong>To your opponent</strong>, once per online or LAN match: your drawn name, your displayed rating, and your real rating (which their game uses to work out the expected result and shows nowhere). Your country is sent only while <em>Show my flag</em> is on, and your platform only while <em>Show my platform</em> is on.</li>
+  <li><strong>To your opponent</strong>, once per online or LAN match: your drawn name, your displayed rating, and your real rating (which their game uses to work out the expected result and shows nowhere); and how your plane looks (its model, colours, finish, intro and aiming mark) with your level, division, best league and Top x % standing. Your country is sent only while <em>Show my flag</em> is on, and your platform only while <em>Show my platform</em> is on.</li>
   <li><strong>To your local network</strong>, while you host a LAN game: your drawn name, so nearby players can find your game. This travels unencrypted on your local network.</li>
   <li><strong>While you search for a ranked match</strong>: the game you host or look for on Unity's matchmaking service carries your real rating, the range of ratings it accepts and a short matching word, with no name or id, so that you are paired with a player of similar skill. Other searching players' games read it; it is removed when the search ends.</li>
   <li><strong>To the leaderboards</strong>, after each ranked match that counts. See <a href="#boards">The leaderboards</a>.</li>
 </ul>
 <p>Nothing else about you reaches another player. The country your phone suggests when you open the country picker is not stored or sent anywhere until you choose it. There is no chat and no free text between players.</p>
+<p><strong>Computer opponents in ranked play.</strong> Some ranked opponents are the game's own computer players. A <em>stand-in</em> is played by your own phone, under a name, flag, platform and look the game makes up for it: no other player's device takes part and nothing about you goes to another player, and it moves your rating as any ranked match does. The <em>ladder bots</em> are copies of the game that the studio runs on its own computers. They search for and play ranked matches as anyone does, so a ladder bot you meet receives what any opponent receives (above). What a ladder bot records of a match holds no name, id, country or platform of either player, and it sends no analytics.</p>
 
 <h3>To the services that run the game</h3>
 <p>Each provider below receives only what is listed, and handles it under its own policy, linked in <a href="#links">Provider policies</a>.</p>
@@ -110,13 +118,13 @@
   <thead><tr><th>Service</th><th>What it receives</th><th>Why</th></tr></thead>
   <tbody>
     <tr>
-      <td><strong>Unity Authentication</strong> (anonymous sign-in)</td>
-      <td>An anonymous player id that Unity creates, and the text of your drawn name (through Unity's Player Names feature).</td>
-      <td>Identifies you to Unity's other services so online play and the leaderboards work; the name is what your leaderboard entries show.</td>
+      <td><strong>Unity Authentication</strong> (sign-in)</td>
+      <td>An anonymous player id that Unity creates, and the text of your drawn name (through Unity's Player Names feature). If Google Play Games has signed you in, also a one-time code from Google, with which Unity links your Play Games identity to this account and keeps it there (see <a href="#playgames">Google Play Games and cloud save</a>).</td>
+      <td>Identifies you to Unity's other services so online play, the leaderboards and the cloud save work; the name is what your leaderboard entries show.</td>
     </tr>
     <tr>
       <td><strong>Unity online play</strong> (Sessions, Relay, Matchmaker)</td>
-      <td>Your anonymous player id and the match messages, which carry what is sent to your opponent (above).</td>
+      <td>Your Unity player id and the match messages, which carry what is sent to your opponent (above).</td>
       <td>Finding an opponent, joining a game by code and passing moves between the two phones.</td>
     </tr>
     <tr>
@@ -125,8 +133,13 @@
       <td>The public rating and win-streak leaderboards.</td>
     </tr>
     <tr>
+      <td><strong>Unity Cloud Save</strong> (see <a href="#playgames">Google Play Games and cloud save</a>)</td>
+      <td>Only while the game saves your progress with Google Play Games: a copy of your profile, stored under your Unity account, without your Play Games player id.</td>
+      <td>Keeping your progress on any device signed in to the same Google account.</td>
+    </tr>
+    <tr>
       <td><strong>Unity Remote Config</strong></td>
-      <td>Your anonymous ids and device details that Unity's software attaches: operating system and version, device maker and model, processor, memory and graphics, screen size, system language, the game's version and how it was installed. Unity works out your approximate country from the network address the request comes from; the game sends no location.</td>
+      <td>Your Unity ids and device details that Unity's software attaches: operating system and version, device maker and model, processor, memory and graphics, screen size, system language, the game's version and how it was installed. Unity works out your approximate country from the network address the request comes from; the game sends no location.</td>
       <td>Game settings that can change without an update, a maintenance switch, a minimum version, and deciding whether you must be asked the analytics question where you are.</td>
     </tr>
     <tr>
@@ -158,14 +171,23 @@
 </table>
 </div>
 
-<p><strong>Cloud Save.</strong> This version of the game does not use Unity Cloud Save: your profile is stored on your phone only. If a later version moves any data to Cloud Save, this policy will be updated first.</p>
+<h2 id="playgames">Google Play Games and cloud save</h2>
+<p>On Android, the game saves your progress with <strong>Google Play Games</strong>, so that any device signed in to the same Google account (another phone, a reinstall, or Google Play Games for PC) gets it back.</p>
+<p>Google's Play Games software is part of the game and starts with it: if you have a Play Games profile, Google signs you in to it when the game starts, and the game cannot switch that off. Once Google has signed you in, the game links your Play Games profile to your Unity account and starts saving your progress by itself, with no press. If your Google account already holds progress and this phone has not played a ranked match, the game takes that progress; if both hold progress, it asks you which to keep, and never overwrites either without asking. If Google has not signed you in, nothing is saved until you press <em>Save my progress</em> under <em>Google Play Games</em> in Settings.</p>
+<ul>
+  <li><strong>To Google</strong>: what Google's own Play Games software collects when it signs you in, under Google's policy: Google Play Games receives your play and shows it in Google's apps under your Play Games profile. The game also asks it for a one-time code that proves your Play Games sign-in to Unity.</li>
+  <li><strong>To Unity Authentication</strong>: that one-time code. With it, Unity links your Play Games identity to your Unity account and keeps it on the account. On a fresh install the code is first used only to look for an earlier link; if there is none, Unity keeps nothing.</li>
+  <li><strong>To Unity Cloud Save</strong>: a copy of your profile (the items listed under <a href="#device">What the game keeps on your phone</a>), without your Play Games player id, updated as you play.</li>
+  <li><strong>To other players</strong>: nothing new. Your Play Games name is shown only to you, in Settings. Your name in the game stays the one drawn for you, on your plate, on the leaderboards, in analytics and in logs. Nothing from Play Games goes to the ad networks or to analytics.</li>
+</ul>
+<p><strong>Delete my data</strong> deletes the copy in Cloud Save and your Unity account with its link (see <a href="#delete">Deleting your data</a>); your Play Games profile is Google's to delete.</p>
 
 <h2 id="analytics">Analytics</h2>
 <p>Analytics is optional, and the game plays exactly the same with it off.</p>
 <ul>
-  <li><strong>In the European Economic Area, the United Kingdom and Switzerland</strong> (Austria, Belgium, Bulgaria, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland and the United Kingdom), you are asked first, and nothing is collected for analytics until you agree:
+  <li><strong>In the European Economic Area, the United Kingdom and Switzerland</strong> (Austria, Belgium, Bulgaria, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland and the United Kingdom), you are asked first, and where you are asked, nothing is collected for analytics until you agree:
     <ul>
-      <li><strong>On Android</strong>, the question is part of Google's consent message (below). Its <em>App</em> purposes (storing and reading information on your device, measuring content performance, understanding audiences through statistics, and developing and improving the game) are the studio's own use of your data for analytics. Analytics is on only if you consent to all four: <em>Consent</em> on the message's first page does, and so does switching all four on under <em>Manage options</em>. <em>Do not consent</em> leaves analytics off. Google decides where the message is shown. If it is not shown to you, analytics is on by default.</li>
+      <li><strong>On Android</strong>, the question is part of Google's consent message (below). Its <em>App</em> purposes (storing and reading information on your device, measuring content performance, understanding audiences through statistics, and developing and improving the game) are the studio's own use of your data for analytics. Analytics is on only if you consent to all four: <em>Consent</em> on the message's first page does, and so does switching all four on under <em>Manage options</em>. <em>Do not consent</em> leaves analytics off. On Android, Google's consent component, not the game, decides whether you are asked. If Google does not ask you, analytics is on by default, as everywhere else, and you can switch it off in Settings. If Google's component cannot answer (for example, when you are offline), analytics stays off unless you have already chosen.</li>
       <li><strong>On Windows</strong>, the game asks its own question. <em>Allow</em> and <em>No thanks</em> are equal in size and weight, and Back counts as <em>No thanks</em>. If the game cannot tell where you are, it asks.</li>
     </ul>
   </li>
@@ -176,7 +198,7 @@
 <p>The eight game events and everything they carry:</p>
 <ul>
   <li><strong>a match started</strong>: the mode (single player, LAN or online), the kind of opponent (the computer, a person, a stand-in, or one of the game's own bot players on the ranked ladder), the difficulty tier in single player, the board's width and height, and the number of planes;</li>
-  <li><strong>a match ended</strong>: the mode, the kind of opponent, the result (win, loss, you left, or your opponent left), the number of shots you took, how efficiently you searched (0 to 1), how long the match took in seconds, and the difficulty tier in single player;</li>
+  <li><strong>a match ended</strong>: the mode, the kind of opponent, the result (win, loss, you left, your opponent left, or the connection was lost), the number of shots you took, how efficiently you searched and how well you chose your shots (each 0 to 1, only for a match played to the end), how long the match took in seconds, the difficulty tier in single player, and, in LAN and online matches, how many times you were away from the match (for example, in another app) and how many of those times you came back in time;</li>
   <li><strong>a mode chosen</strong> from the main menu;</li>
   <li><strong>a ranked search ended</strong>: how it ended, how long it took, and which of the game's rules ended it;</li>
   <li><strong>a hint shown</strong>: which hint;</li>
@@ -219,20 +241,22 @@
 
 <h2 id="delete">Deleting your data</h2>
 <h3>Settings &gt; Delete my data</h3>
-<p>From the main menu, open Settings and press <strong>Delete my data</strong> (it is not offered during a match). The game asks you to confirm; the question says it deletes your Unity account, the analytics already sent and everything the game keeps on the device: your rating, achievements, name and settings. It cannot be undone. It does the following, in this order:</p>
+<p>From the main menu, open Settings and press <strong>Delete my data</strong> (it is not offered during a match). The game asks you to confirm: <em>“Delete your data? This deletes your Unity account, the analytics already sent, your entries on the live leaderboards, your progress saved with Google Play Games and everything this game keeps on this device: your rating, achievements, name and settings. A past month's leaderboard keeps its score. It cannot be undone.”</em> Where Google Play Games is not available, the words about Google Play Games are left out. It does the following, in this order:</p>
 <ol>
   <li>removes your entries from the <strong>live leaderboards</strong>, through a Unity Cloud Code function that deletes only the caller's own entries;</li>
-  <li>deletes your anonymous <strong>Unity Authentication account</strong> (signing in first if it has to, unless you never had one);</li>
+  <li>deletes your <strong>progress saved with Google Play Games</strong> from Unity Cloud Save, after waiting for a save already on its way;</li>
+  <li>deletes your <strong>Unity Authentication account</strong>, with its link to Google Play Games if it has one (signing in first if it has to, unless you never had one);</li>
   <li>switches analytics off and asks <strong>Unity Analytics to delete</strong> the data sent from your device;</li>
-  <li>wipes your <strong>profile on the phone</strong> (rating, achievements, name, settings and the other items listed under <a href="#device">What the game keeps on your phone</a>) and records your analytics choice as unanswered, so you may be asked again. Where Google's consent form applies (the EEA, the UK and Switzerland), it then opens it again so you choose afresh, and the answer you give there decides analytics.</li>
+  <li>wipes your <strong>profile on the phone</strong> (rating, achievements, name, settings and the other items listed under <a href="#device">What the game keeps on your phone</a>), with <code>resume.json</code> and <code>device.json</code>, and records your analytics choice as unanswered, so you may be asked again. It then writes <code>device.json</code> again, holding only the flags that the automatic save to Google Play Games is off and, on Android, that Google's form is owed. Where Google's consent form applies (the EEA, the UK and Switzerland), it then opens it again so you choose afresh, and the answer you give there decides analytics.</li>
 </ol>
-<p>It is all or nothing: if the leaderboards or the account cannot be reached, nothing is deleted, you are told, and you can try again. Afterwards the game starts as it did the first time, with a new drawn name and a new anonymous account.</p>
+<p>Each step runs only once the one before it has finished, and each has a time limit, so it can take up to about a minute and a half. If a step fails (for example, when you are offline), the steps after it do not run and your profile on the phone is not wiped, but the steps already done are not undone. The game then says <em>“Your data could not be deleted. Nothing was deleted. Check your connection and try again.”</em>, or, if a step went through, <em>“Your data could not be fully deleted. Try again to finish.”</em>, and you can try again. The automatic save to Google Play Games is turned off on this phone as the deletion starts, and stays off whether or not it finishes. Afterwards the game starts as it did the first time, with a new drawn name and a new anonymous account, and it saves to Google Play Games again only when you press <em>Save my progress</em>.</p>
 <p>What it does not do:</p>
 <ul>
   <li><strong>Archived months</strong> of the leaderboards keep their entries, because an archived month can be removed only as a whole. Write to <strong><a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></strong> with your name as the game showed it and we will tell you what can be removed. If you used Delete my data on a version older than 17 October 2026, your live entries may still be there; write to us and we will delete them.</li>
   <li>The installation id that Unity's software keeps on the phone is not part of the account and is not erased by it.</li>
   <li>Your <strong>purchases</strong> are Google's records and stay with Google Play; the game reads them again at the next start. Your <strong>ad-consent choices</strong> are stored by Google's component on your phone and ads data held by ad networks is theirs; use <em>Privacy settings</em> and your phone's advertising-ID settings, and the providers' policies, for those.</li>
   <li>If you reinstall before Android's next backup, the system's backup can restore the deleted profile; the game then signs in as a new player.</li>
+  <li><strong>What Google keeps</strong>: your Google Play Games profile, and what Google's Play Games software collected, are Google's, and the phone stays signed in to Play Games (the game cannot sign you out of it). You can delete this game's data from your Play Games profile, or the whole profile, in the Play Store app under your Play Games profile's settings, or at <a href="https://play.google.com/games/profile">play.google.com/games/profile</a>; Google explains how in <a href="https://support.google.com/googleplay/answer/9130646">Delete your Play Games data or Play Games profile</a>. That does not delete what the game keeps; Delete my data does.</li>
 </ul>
 <h3>Other ways</h3>
 <ul>
@@ -246,10 +270,10 @@
 <h2 id="bases">Legal bases (GDPR)</h2>
 <p>Where the EU or UK General Data Protection Regulation applies, the game relies on these legal bases:</p>
 <ul>
-  <li><strong>Consent</strong>: for analytics in the European Economic Area, the United Kingdom and Switzerland, where nothing is collected until you agree (on Android in Google's consent message, on Windows in the game's question); and for personalised ads, through Google's consent message. You can withdraw consent at any time in Settings (<em>Analytics</em>, <em>Privacy settings</em>); withdrawing does not affect what was done before.</li>
+  <li><strong>Consent</strong>: for analytics in the European Economic Area, the United Kingdom and Switzerland, where, when you are asked, nothing is collected until you agree (on Android in Google's consent message, on Windows in the game's question); and for personalised ads, through Google's consent message. You can withdraw consent at any time in Settings (<em>Analytics</em>, <em>Privacy settings</em>); withdrawing does not affect what was done before.</li>
   <li><strong>Legitimate interests</strong>: for analytics everywhere else, to learn how the game is played and fix what goes wrong, with the opt-out in Settings &gt; Analytics. You can object at any time by switching it off.</li>
   <li><strong>Legitimate interests</strong> also cover answering the feedback emails you send us and fixing the problems they report.</li>
-  <li><strong>Contract</strong>: to provide what you use in the game: the anonymous account, online play, the leaderboards and the items you buy.</li>
+  <li><strong>Contract</strong>: to provide what you use in the game: your Unity account, online play, the leaderboards and the items you buy.</li>
   <li><strong>Legal obligation</strong>: where the law requires us to keep or hand over data, for example tax and accounting records of sales, which Google Play keeps for purchases.</li>
 </ul>
 
@@ -264,7 +288,7 @@
   <li>withdraw consent at any time, as described above;</li>
   <li><strong>complain to a supervisory authority</strong>, in the country where you live or work, or in Romania, where the developer is: the <strong>National Supervisory Authority for Personal Data Processing (ANSPDCP)</strong>, <a href="https://www.dataprotection.ro/">www.dataprotection.ro</a>.</li>
 </ul>
-<p>To use a right, write to <strong><a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></strong>. The game has no name, email address or other direct identifier for you, so to find your leaderboard entries we need the name the game showed. For data another company controls, ask that company (below).</p>
+<p>To use a right, write to <strong><a href="mailto:contact@airplanesmultiplayer.com">contact@airplanesmultiplayer.com</a></strong>. The game asks for no name or email address. If it saves your progress with Google Play Games, your Unity account is linked to your Play Games profile and your phone keeps your Play Games player id; otherwise it holds no direct identifier for you. Either way, to find your leaderboard entries we need the name the game showed. For data another company controls, ask that company (below).</p>
 
 <h2 id="others">Data other companies control</h2>
 <ul>
@@ -275,8 +299,10 @@
 
 <h2 id="retention">How long data is kept</h2>
 <ul>
-  <li><strong>On your phone:</strong> until you delete it with <em>Delete my data</em> or uninstall the game.</li>
-  <li><strong>Your Unity account:</strong> until you delete it with <em>Delete my data</em>.</li>
+  <li><strong>On your phone:</strong> until you delete it with <em>Delete my data</em> or uninstall the game; after Delete my data, <code>device.json</code> keeps only the two flags described there.</li>
+  <li><strong>Your Unity account</strong>, with its link to Google Play Games if it has one: until you delete it with <em>Delete my data</em>.</li>
+  <li><strong>Your progress saved with Google Play Games</strong> (the copy in Unity Cloud Save): each save replaces the one before, and the copy is kept until you delete it with <em>Delete my data</em>.</li>
+  <li><strong>Your Play Games profile:</strong> kept by Google under its own policy until you delete it (see <a href="#delete">Deleting your data</a>).</li>
   <li><strong>Live leaderboard entries:</strong> your latest score, until your next ranked match replaces it, you use Delete my data, or we remove it on your request.</li>
   <li><strong>Leaderboard monthly archives:</strong> kept indefinitely; an archived month can be removed only as a whole.</li>
   <li><strong>Feedback emails:</strong> until they are no longer needed to answer you or fix the problem you reported.</li>
@@ -288,9 +314,9 @@
 
 <h2 id="links">Provider policies</h2>
 <ul>
-  <li>Unity (Authentication, Analytics, Remote Config, Leaderboards, Cloud Code, online play, Diagnostics, LevelPlay, Unity Ads and In-App Purchasing): <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Game Player and App User Privacy Policy</a>; Unity's <a href="https://unity.com/legal/privacy-policy">Privacy Policy hub</a></li>
+  <li>Unity (Authentication, Analytics, Remote Config, Leaderboards, Cloud Code, Cloud Save, online play, Diagnostics, LevelPlay, Unity Ads and In-App Purchasing): <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Game Player and App User Privacy Policy</a>; Unity's <a href="https://unity.com/legal/privacy-policy">Privacy Policy hub</a></li>
   <li>ironSource / Unity LevelPlay: <a href="https://unity.com/legal/privacy-policy">Unity privacy policy</a> (ironSource is part of Unity)</li>
-  <li>Google AdMob, Google's User Messaging Platform and Google Play (including Play Billing, in-app updates and Android vitals): <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a></li>
+  <li>Google AdMob, Google's User Messaging Platform, Google Play Games and Google Play (including Play Billing, in-app updates and Android vitals): <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a></li>
 </ul>
 
 <h2 id="changes">Changes</h2>
