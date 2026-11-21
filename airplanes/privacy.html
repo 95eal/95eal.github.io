@@ -58,7 +58,7 @@
 <main>
 
 <h1>Airplanes Multiplayer: privacy policy</h1>
-<p class="meta"><strong>Effective date:</strong> 19 November 2026</p>
+<p class="meta"><strong>Effective date:</strong> 21 November 2026</p>
 <p class="meta">This policy is published at https://95eal.com/airplanes/privacy.html</p>
 
 <h2 id="who">Who we are</h2>
@@ -87,7 +87,8 @@
   <li>the ids of the items you have bought, copied from Google Play so the game works offline (for example, <code>airplanes.remove_ads</code>), and how many rewarded ads you have watched toward each item;</li>
   <li>an ad-timing clock: how long the game has been in the foreground, when the last ad was shown on that clock, and how many ads you have watched in total;</li>
   <li>your daily streak, the items you have seen marked as new, and your bonus experience points;</li>
-  <li>Google Play Games saving: whether this phone saves your progress, whether the automatic save is turned off, whether you have answered the offer to save, and, while it saves, your Play Games player id, which the game uses only to check that Play Games is still signed in to the same player and sends nowhere (Android's own backup holds it with the rest of the profile).</li>
+  <li>Google Play Games saving: whether this phone saves your progress, whether the automatic save is turned off, whether you have answered the offer to save, and, while it saves, your Play Games player id, which the game uses only to check that Play Games is still signed in to the same player and sends nowhere (Android's own backup holds it with the rest of the profile);</li>
+  <li>a list of the achievements already sent to Google Play Games, so each is sent once; it is emptied if a different Play Games player is linked.</li>
 </ul>
 <p>The profile holds no free text, no device model or name, and no Unity player id; the one id it can hold is the Play Games player id above. It is not encrypted and can be edited by someone with access to the phone's files, so your rating is a local display value.</p>
 <p>Beside the profile are two small files:</p>
@@ -144,7 +145,7 @@
     </tr>
     <tr>
       <td><strong>Unity Analytics</strong> (see <a href="#analytics">Analytics</a>)</td>
-      <td>Eight game events (below) and Unity's automatic events (a new player, a session starting, running and ending, and the device, with its platform and language). Unity attaches its own pseudonymous installation and player ids.</td>
+      <td>Nine game events (below) and Unity's automatic events (a new player, a session starting, running and ending, and the device, with its platform and language). Unity attaches its own pseudonymous installation and player ids.</td>
       <td>Seeing how the game is played and where it fails, so it can be improved.</td>
     </tr>
     <tr>
@@ -175,7 +176,7 @@
 <p>On Android, the game saves your progress with <strong>Google Play Games</strong>, so that any device signed in to the same Google account (another phone, a reinstall, or Google Play Games for PC) gets it back.</p>
 <p>Google's Play Games software is part of the game and starts with it: if you have a Play Games profile, Google signs you in to it when the game starts, and the game cannot switch that off. Once Google has signed you in, the game links your Play Games profile to your Unity account and starts saving your progress by itself, with no press. If your Google account already holds progress and this phone has not played a ranked match, the game takes that progress; if both hold progress, it asks you which to keep, and never overwrites either without asking. If Google has not signed you in, nothing is saved until you press <em>Save my progress</em> under <em>Google Play Games</em> in Settings.</p>
 <ul>
-  <li><strong>To Google</strong>: what Google's own Play Games software collects when it signs you in, under Google's policy: Google Play Games receives your play and shows it in Google's apps under your Play Games profile. The game also asks it for a one-time code that proves your Play Games sign-in to Unity.</li>
+  <li><strong>To Google</strong>: what Google's own Play Games software collects when it signs you in, under Google's policy: Google Play Games receives your play and shows it in Google's apps under your Play Games profile. The game also asks it for a one-time code that proves your Play Games sign-in to Unity. The game's achievements: when you earn one, or at launch for any you have earned that were not sent yet, the game tells Google Play Games which achievement you unlocked, or how far you have got on one that counts up. Nothing else goes with it. This happens only while the game saves your progress with Google Play Games, and only to the Play Games account linked to it.</li>
   <li><strong>To Unity Authentication</strong>: that one-time code. With it, Unity links your Play Games identity to your Unity account and keeps it on the account. On a fresh install the code is first used only to look for an earlier link; if there is none, Unity keeps nothing.</li>
   <li><strong>To Unity Cloud Save</strong>: a copy of your profile (the items listed under <a href="#device">What the game keeps on your phone</a>), without your Play Games player id, updated as you play.</li>
   <li><strong>To other players</strong>: nothing new. Your Play Games name is shown only to you, in Settings. Your name in the game stays the one drawn for you, on your plate, on the leaderboards, in analytics and in logs. Nothing from Play Games goes to the ad networks or to analytics.</li>
@@ -195,7 +196,7 @@
   <li>Your answer follows you: once you have chosen, the game keeps your choice wherever you are.</li>
   <li>Switching analytics off stops collection from then on. What was already sent is deleted only through <strong>Delete my data</strong> (below) or by writing to us.</li>
 </ul>
-<p>The eight game events and everything they carry:</p>
+<p>The nine game events and everything they carry:</p>
 <ul>
   <li><strong>a match started</strong>: the mode (single player, LAN or online), the kind of opponent (the computer, a person, a stand-in, or one of the game's own bot players on the ranked ladder), the difficulty tier in single player, the board's width and height, and the number of planes;</li>
   <li><strong>a match ended</strong>: the mode, the kind of opponent, the result (win, loss, you left, your opponent left, or the connection was lost), the number of shots you took, how efficiently you searched and how well you chose your shots (each 0 to 1, only for a match played to the end), how long the match took in seconds, the difficulty tier in single player, and, in LAN and online matches, how many times you were away from the match (for example, in another app) and how many of those times you came back in time;</li>
@@ -204,7 +205,8 @@
   <li><strong>a hint shown</strong>: which hint;</li>
   <li><strong>an error shown</strong>: which error and on which screen;</li>
   <li><strong>an achievement earned</strong>: which achievement, how many matches you had finished, and the mode, opponent kind and difficulty of the match that earned it;</li>
-  <li><strong>a difficulty tier opened</strong>: which tier, which rule opened it, and how many matches you had finished.</li>
+  <li><strong>a difficulty tier opened</strong>: which tier, which rule opened it, and how many matches you had finished;</li>
+  <li><strong>a rating asked</strong>: that the game asked Google Play to show its rating card, or that you opened the game's store page from Support us or Settings to rate it, which of the three it was, and how many matches you had finished.</li>
 </ul>
 <p>No event carries your name, your country, your platform, free text, or a device identifier chosen by the game. Unity's software adds its own pseudonymous installation and player ids.</p>
 
@@ -256,7 +258,7 @@
   <li>The installation id that Unity's software keeps on the phone is not part of the account and is not erased by it.</li>
   <li>Your <strong>purchases</strong> are Google's records and stay with Google Play; the game reads them again at the next start. Your <strong>ad-consent choices</strong> are stored by Google's component on your phone and ads data held by ad networks is theirs; use <em>Privacy settings</em> and your phone's advertising-ID settings, and the providers' policies, for those.</li>
   <li>If you reinstall before Android's next backup, the system's backup can restore the deleted profile; the game then signs in as a new player.</li>
-  <li><strong>What Google keeps</strong>: your Google Play Games profile, and what Google's Play Games software collected, are Google's, and the phone stays signed in to Play Games (the game cannot sign you out of it). You can delete this game's data from your Play Games profile, or the whole profile, in the Play Store app under your Play Games profile's settings, or at <a href="https://play.google.com/games/profile">play.google.com/games/profile</a>; Google explains how in <a href="https://support.google.com/googleplay/answer/9130646">Delete your Play Games data or Play Games profile</a>. That does not delete what the game keeps; Delete my data does.</li>
+  <li><strong>What Google keeps</strong>: your Google Play Games profile, the achievements the game sent to it, and what Google's Play Games software collected, are Google's, and the phone stays signed in to Play Games (the game cannot sign you out of it). You can delete this game's data from your Play Games profile, or the whole profile, in the Play Store app under your Play Games profile's settings, or at <a href="https://play.google.com/games/profile">play.google.com/games/profile</a>; Google explains how in <a href="https://support.google.com/googleplay/answer/9130646">Delete your Play Games data or Play Games profile</a>. That does not delete what the game keeps; Delete my data does.</li>
 </ul>
 <h3>Other ways</h3>
 <ul>
